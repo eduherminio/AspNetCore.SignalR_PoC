@@ -2,8 +2,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 
-using SignalRServer;
-
 namespace SignalRServer
 {
     /// <summary>

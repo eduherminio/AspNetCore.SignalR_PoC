@@ -1,6 +1,4 @@
-﻿using SignalRServer;
-
-namespace SignalRServer
+﻿namespace SignalRServer
 {
     public interface ISignalRService
     {

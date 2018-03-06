@@ -12,7 +12,6 @@ namespace SignalRServer
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                //.UseConfiguration(Startup.GetConfigurationBuilder())
                 .UseStartup<Startup>()
                 .Build();
     }

@@ -1,5 +1,4 @@
-﻿using SignalRServer;
-using System;
+﻿using System;
 using System.Linq;
 
 namespace SignalRServer

@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Threading;
 
-using SignalRServer;
-
 namespace SignalRServer
 {
     public class PositionGenerator
     {
 
         private static PositionGenerator _instance = new PositionGenerator();
-
          
         private readonly Random _rnd = new Random();
         private ISignalRService _signalRService;
