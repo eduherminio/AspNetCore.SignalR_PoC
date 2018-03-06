@@ -2,7 +2,7 @@
 {
     public interface ISignalRService
     {
-        void UpdateVehicle(RealTimeVehicle realTimeVehicle);
+        void UpdateVehicle(Vehicle Vehicle);
 
         void NotifyDowntime();
 

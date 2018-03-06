@@ -6,7 +6,7 @@ namespace SignalRClient
 {
     static internal class Program
     {
-        static private string _url = "http://localhost:6666/RealTimeVehicles/";
+        static private string _url = "http://localhost:6666/Vehicles/";
 
         static private HubConnection _connection;
 
@@ -15,24 +15,24 @@ namespace SignalRClient
             StartConnectionAsync();
             try
             {
-                _connection.On<RealTimeVehicle>("VehicleUpdate", vehicle =>
+                _connection.On<Vehicle>(MessageType.VehicleUpdate.ToString(), vehicle =>
                 {
-                    Console.WriteLine(/*vehicle.AppId +*/ ": [" + vehicle.Position.Lat + ", " + vehicle.Position.Lng + "]");
+                    Console.WriteLine(/*vehicle.Code +*/ ": [" + vehicle.Position.Lat + ", " + vehicle.Position.Lng + "]");
                 });
-                _connection.On<string>("ServerBroadcast", message =>
+                _connection.On<string>(MessageType.ServerBroadcast.ToString(), message =>
                 {
                     Console.WriteLine("[BROADCAST]: " + message);
                 });
-                _connection.On<string>("ServerMessage", message =>
+                _connection.On<string>(MessageType.ServerMessage.ToString(), message =>
                 {
                     Console.WriteLine("[INDIVIDUAL MESSAGE] : message");
                     _connection.InvokeAsync("ClientMessageAsync", "Hi there!");
                 });
-                _connection.On<string>("MemberJoined", message =>
+                _connection.On<string>(MessageType.MemberJoined.ToString(), message =>
                 {
                     Console.WriteLine(message);
                 });
-                _connection.On<string>("MemberLeft", message =>
+                _connection.On<string>(MessageType.MemberLeft.ToString(), message =>
                 {
                     Console.WriteLine(message);
                 });

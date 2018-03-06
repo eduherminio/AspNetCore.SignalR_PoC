@@ -19,14 +19,14 @@ namespace SignalRServer
         public override Task OnConnectedAsync()
         {
             _hubMethods.AddClient(Context.ConnectionId);
-            Clients.Others.SendAsync("MemberJoined", $"{Context.ConnectionId} joined");
+            Clients.Others.SendAsync(MessageType.MemberJoined.ToString(), $"{Context.ConnectionId} joined");
             return base.OnConnectedAsync();
         }
 
         public override Task OnDisconnectedAsync(Exception e)
         {
             _hubMethods.RemoveClient(Context.ConnectionId);
-            Clients.Others.SendAsync("MemberLeft", $"{Context.ConnectionId} left");
+            Clients.Others.SendAsync(MessageType.MemberLeft.ToString(), $"{Context.ConnectionId} left");
             return base.OnDisconnectedAsync(e);
         }
 

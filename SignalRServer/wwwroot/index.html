@@ -1,29 +1,35 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
-	<title>Real Time Vehicle Updates</title>
-	<script src="/lib/signalr.min.js"></script>
+    <meta charset="utf-8" />
+    <title>Real Time Vehicle Updates</title>
+    <script src="/lib/signalr.min.js"></script>
 </head>
 <body>
-	<div id="Title">Real Time Vehicle Updates</div>
-	<script>
-		alert("App started");
-        var connection = new signalR.HubConnection('/RealTimeVehicles');
-		connection.start();
+    <div id="Title">Real Time Vehicle Updates</div>
+    <script>
+        alert("App started");
+        var connection = new signalR.HubConnection('/Vehicles');
+        connection.start();
 
-        connection.on('SendVehicleUpdate', function (RealTimeVehicle) {
-            var formattedInfo= "(" + RealTimeVehicle.position.lat + ", " + RealTimeVehicle.position.lng + ")" + "  ===> Vehicle " + RealTimeVehicle.appId;
-			console.log(formattedInfo);
-			document.getElementById('Position').innerHTML = formattedInfo;
-		});
-		connection.on('MemberJoined', function (str) {
-			alert(str);
-		});
-		connection.on('MemberLeft', function (str) {
-			alert(str);
-		});
-	</script>
-	<div id="Position"></div>
+        connection.on('VehicleUpdate', function (Vehicle) {
+            var formattedInfo = "(" + Vehicle.position.lat + ", " + Vehicle.position.lng + ")" + "  ===> Vehicle " + Vehicle.code;
+            console.log(formattedInfo);
+            document.getElementById('Position').innerHTML = formattedInfo;
+        });
+        connection.on('MemberJoined', function (str) {
+            alert(str);
+        });
+        connection.on('MemberLeft', function (str) {
+            alert(str);
+        });
+        connection.on('ServerBroadcast', function (str) {
+            console.log(str);
+        });
+        connection.on('ServerMessage', function (str) {
+            alert(str);
+        });
+    </script>
+    <div id="Position"></div>
 </body>
 </html>

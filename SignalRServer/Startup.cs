@@ -29,7 +29,7 @@ namespace SignalRServer
             app.UseStaticFiles();
             app.UseSignalR(routes =>
             {
-                routes.MapHub<VehicleHub>("/RealTimeVehicles");
+                routes.MapHub<VehicleHub>("/Vehicles");
             });
 
             // Workaround to insert ISignalRService into PositionGenerator singleton

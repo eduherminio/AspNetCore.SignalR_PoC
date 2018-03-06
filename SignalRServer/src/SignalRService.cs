@@ -14,9 +14,9 @@ namespace SignalRServer
             _hubMethods = hubMethods;
         }
 
-        public void UpdateVehicle(RealTimeVehicle realTimeVehicle)
+        public void UpdateVehicle(Vehicle Vehicle)
         {
-            _hubMethods.SendVehicleUpdate(realTimeVehicle);
+            _hubMethods.SendVehicleUpdate(Vehicle);
         }
 
         public void NotifyDowntime()
@@ -33,7 +33,7 @@ namespace SignalRServer
         {
             string client = connectionIdentifier;
             if (string.IsNullOrEmpty(connectionIdentifier) && _hubMethods.SignalRConnectedClients.Any())
-                client = _hubMethods.SignalRConnectedClients.ElementAt(_rnd.Next(0, _hubMethods.SignalRConnectedClients.Count - 1));
+                client = _hubMethods.SignalRConnectedClients.ElementAt(_rnd.Next(0, _hubMethods.SignalRConnectedClients.Count));
 
             _hubMethods.SendMessageAsync(MessageType.ServerMessage, client, "There seem to exist issues with your conexion, behaviour may change unexpectedly");
         }

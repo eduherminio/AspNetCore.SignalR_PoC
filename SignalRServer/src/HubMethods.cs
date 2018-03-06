@@ -35,7 +35,7 @@ namespace SignalRServer
             return _hubContext.Clients.Client(clientId).SendAsync(messageType.ToString(), args);
         }
 
-        public Task SendVehicleUpdate(RealTimeVehicle vehicle)
+        public Task SendVehicleUpdate(Vehicle vehicle)
         {
             return _hubContext.Clients.All.SendAsync(MessageType.VehicleUpdate.ToString(), vehicle);
         }

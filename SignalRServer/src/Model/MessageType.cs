@@ -5,6 +5,8 @@
         VehicleUpdate,
         ServerBroadcast,
         ServerMessage,
-        ClientMessage
+        ClientMessage,
+        MemberJoined,
+        MemberLeft
     }
 }
