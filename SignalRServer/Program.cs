@@ -10,9 +10,15 @@ namespace SignalRServer
             BuildWebHost(args).Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+        public static IWebHost BuildWebHost(string[] args)
+        {
+            IWebHostBuilder builder = WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>();
+
+            if (args.Length > 0)
+                builder.UseUrls(args);
+
+            return builder.Build();
+        }
     }
 }

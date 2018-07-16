@@ -12,7 +12,10 @@ namespace SignalRServer
             {
                 options.AddPolicy("CorsPolicy", b =>
                 {
-                    b.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                    b.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();
                 });
             });
             services.AddTransient<HubMethods<VehicleHub>>();

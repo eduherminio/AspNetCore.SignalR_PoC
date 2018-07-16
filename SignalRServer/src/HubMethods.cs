@@ -25,14 +25,14 @@ namespace SignalRServer
             _connectionManager = connectionManager;
         }
 
-        public Task BroadcastAsync(MessageType messageType, params object[] args)
+        public Task BroadcastAsync(MessageType messageType, string message)
         {
-            return _hubContext.Clients.All.SendAsync(messageType.ToString(), args);
+            return _hubContext.Clients.All.SendAsync(messageType.ToString(), message);
         }
 
-        public Task SendMessageAsync(MessageType messageType, string clientId, params object[] args)
+        public Task SendMessageAsync(MessageType messageType, string clientId, string message)
         {
-            return _hubContext.Clients.Client(clientId).SendAsync(messageType.ToString(), args);
+            return _hubContext.Clients.Client(clientId).SendAsync(messageType.ToString(), message);
         }
 
         public Task SendVehicleUpdate(Vehicle vehicle)

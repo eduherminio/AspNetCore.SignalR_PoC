@@ -44,11 +44,11 @@ namespace SignalRServer
 
             _signalRService.UpdateVehicle(new Vehicle(lat, lon));
 
-            if ((int)(100 * lat) % 3 == 0 && (int)(100 * lon) % 5 == 0)
+            if ((int)(100 * lat) % 5 == 0 && (int)(100 * lon) % 13 == 0)
                 _signalRService.NotifyConnectionIssues(string.Empty);
-            else if ((int)(100 * lat) % 5 == 0)
+            else if ((int)(100 * lat) % 7 == 0)
                 _signalRService.NotifyDowntime();
-            else if ((int)(100 * lon) % 10 == 0)
+            else if ((int)(100 * lon) % 13 == 0)
                 _signalRService.NotifyNewVersion();
         }
     }

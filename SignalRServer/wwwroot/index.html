@@ -9,13 +9,17 @@
     <div id="Title">Real Time Vehicle Updates</div>
     <script>
         alert("App started");
-        var connection = new signalR.HubConnection('/Vehicles');
+        var connection = new signalR.HubConnectionBuilder()
+            .withUrl('/Vehicles')
+            .configureLogging(signalR.LogLevel.Information)
+            .build();
+
         connection.start();
 
-        connection.on('VehicleUpdate', function (Vehicle) {
-            var formattedInfo = "(" + Vehicle.position.lat + ", " + Vehicle.position.lng + ")" + "  ===> Vehicle " + Vehicle.code;
-            console.log(formattedInfo);
-            document.getElementById('Position').innerHTML = formattedInfo;
+        connection.on('VehicleUpdate', function (vehicle) {
+                var formattedInfo = "(" + vehicle.position.lat + ", " + vehicle.position.lng + ")" + "  ===> Vehicle " + vehicle.code;
+                console.log(formattedInfo);
+                document.getElementById('Position').innerHTML = formattedInfo;
         });
         connection.on('MemberJoined', function (str) {
             alert(str);
